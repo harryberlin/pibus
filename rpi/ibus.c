@@ -1372,7 +1372,8 @@ static void ibus_update_leds()
 	static int i = 0;
 
 	i++;
-	if ((ibus.read_msgs && i >= 20) || i >= 60)
+	//if ((ibus.read_msgs && i >= 20) || i >= 60)
+	if ((ibus.read_msgs && i >= 20*4) || i >= 60*50/12)  //blinks not slowly for faster tick IBusCommunicator
 	{
 		i = 0;
 	}
@@ -1529,7 +1530,8 @@ int ibus_init(const char *port, char *startup, bool bluetooth, bool camera, bool
 	ibus.z4_keymap = z4_keymap;
 	ibus.coolant_warning = coolant_warning;
 
-	mainloop_timeout_add(50, ibus_50ms_tick, NULL);
+	//mainloop_timeout_add(50, ibus_50ms_tick, NULL);
+	mainloop_timeout_add(12, ibus_50ms_tick, NULL); //tick faster for IBusCommunicator
 	mainloop_timeout_add(1000, ibus_1s_tick, NULL);
 
 	/* gpio 15 is the UART RX, don't change its direction. */
