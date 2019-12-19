@@ -1373,7 +1373,7 @@ static void ibus_update_leds()
 
 	i++;
 	//if ((ibus.read_msgs && i >= 20) || i >= 60)
-	if ((ibus.read_msgs && i >= 20*4) || i >= 60*50/12)  //blinks not slowly for faster tick IBusCommunicator
+	if ((ibus.read_msgs && i >= 20*4) || i >= 60*50/12)  //blinks slowly for faster tick IBusCommunicator
 	{
 		i = 0;
 	}
